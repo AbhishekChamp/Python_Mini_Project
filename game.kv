@@ -1,0 +1,325 @@
+#:kivy 2.0
+
+<LogInScreen>:
+    GridLayout:
+        cols: 1
+        GridLayout:
+            cols: 1
+            padding: 15, 15
+            spacing: 20, 20
+            Label:
+                text: "USER LOGIN"
+                font_size: "20sp"
+            Label:
+                id: username_label
+                size_hint_y: None
+                text: "Username" if (root.ids.username.focus == True) or (root.ids.username.text) else ""
+                font_size: "20sp"
+                text_size: self.size
+                halign: 'left'
+                valign: 'middle'
+            TextInput:
+                id: username
+                hint_text: "Username"
+                hint_text_color: [0, 0, 0, 0] if self.focus == True else [0, 0, 0, 1]
+                multiline: False
+                font_size: "20sp"
+                size_hint_y: None
+                height: 125
+            Label:
+                id: password_label
+                size_hint_y: None
+                text: "Password" if (root.ids.password.focus == True) or (root.ids.password.text) else ""
+                font_size: "20sp"
+                text_size: self.size
+                halign: 'left'
+                valign: 'middle'
+            TextInput:
+                id: password
+                password: True
+                hint_text: "Password"
+                hint_text_color: [0, 0, 0, 0] if self.focus == True else [0, 0, 0, 1]
+                multiline: False
+                font_size: "20sp"
+                size_hint_y: None
+                height: 125
+            RelativeLayout:
+                Button:
+                    text: "LOGIN"
+                    on_press: root.login(root.ids.username.text, root.ids.password.text)
+                    size_hint: 0.3, 0.5
+                    pos_hint : {'center_x': 0.5, 'center_y': 0.6}
+                    font_size: "20sp"
+            Label:
+                id: login_wrong
+                text: ""
+                font_size: "20sp"
+        GridLayout:
+            cols: 2
+            size_hint: 0.2, 0.2
+            padding: 10, 10
+            spacing: 10, 0
+            Button:
+                text: "Forgot Password"
+                background_color: 1, 1, 1, 0
+                opacity: 1 if self.state == 'normal' else 0.5
+                color: 0.1,0.7, 1, 1
+                font_size: "20sp"
+                on_press: root.forget_password()
+            Button:
+                text: "Sign Up"
+                background_color: 1, 1, 1, 0
+                opacity: 1 if self.state == 'normal' else 0.5
+                color: 0.1,0.7, 1, 1
+                font_size: "20sp"
+                on_press: root.sign_up()
+
+<SignUpScreen>:
+    GridLayout:
+        cols: 1
+        GridLayout:
+            cols: 1
+            padding: 15, 15
+            spacing: 20, 20
+            Label:
+                text: "Sign up now"
+                font_size: "20sp"
+            Label:
+                id: username_label
+                size_hint_y: None
+                text: "Username" if (root.ids.username.focus == True) or (root.ids.username.text) else ""
+                font_size: "20sp"
+                text_size: self.size
+                halign: 'left'
+                valign: 'middle'
+            TextInput:
+                id: username
+                hint_text: "Username"
+                hint_text_color: [0, 0, 0, 0] if self.focus == True else [0, 0, 0, 1]
+                multiline: False
+                font_size: "20sp"
+                size_hint_y: None
+                height: 125
+            Label:
+                id: password_label
+                size_hint_y: None
+                text: "Password" if (root.ids.password.focus == True) or (root.ids.password.text) else ""
+                font_size: "20sp"
+                text_size: self.size
+                halign: 'left'
+                valign: 'middle'
+            TextInput:
+                id: password
+                password: True
+                hint_text: "Password"
+                hint_text_color: [0, 0, 0, 0] if self.focus == True else [0, 0, 0, 1]
+                multiline: False
+                font_size: "20sp"
+                size_hint_y: None
+                height: 125
+            RelativeLayout:
+                Button:
+                    text: "Back"
+                    on_press: root.go_back()
+                    size_hint: 0.3, 0.5
+                    pos_hint : {'center_x': 0.25, 'center_y': 0.6}
+                    font_size: "20sp"
+                Button:
+                    text: "Submit"
+                    on_press: root.check_user(root.ids.username.text, root.ids.password.text)
+                    size_hint: 0.3, 0.5
+                    pos_hint : {'center_x': 0.7, 'center_y': 0.6}
+                    font_size: "20sp"
+            Label:
+                id: empty
+                text: ""
+                font_size: "20sp"
+
+
+<SignUpScreenSuccess>:
+    GridLayout:
+        cols: 1
+        padding: 15, 15
+        spacing: 20, 20
+        Label:
+            text: "Thank you for signing up. Your sign up successful. Please try logging in."
+            font_size: "20sp"
+        RelativeLayout:
+            Button:
+                text: "Login Page"
+                size_hint: 0.4, 0.3
+                pos_hint : {'center_x': 0.5, 'center_y': 0.6}
+                font_size: "20sp"
+                on_press: root.go_to_login()
+
+<ForgotPasswordScreen>:
+    GridLayout:
+        cols: 1
+        GridLayout:
+            cols: 1
+            padding: 15, 15
+            spacing: 20, 20
+            Label:
+                text: "FORGOT PASSWORD"
+                font_size: "20sp"
+            Label:
+                id: mail_label
+                size_hint_y: None
+                text: "Mail ID" if (root.ids.mail.focus == True) or (root.ids.mail.text) else ""
+                font_size: "20sp"
+                text_size: self.size
+                halign: 'left'
+                valign: 'middle'
+            TextInput:
+                id: mail
+                hint_text: "Enter your mail ID"
+                hint_text_color: [0, 0, 0, 0] if self.focus == True else [0, 0, 0, 1]
+                multiline: False
+                font_size: "20sp"
+                size_hint_y: None
+                height: 125
+            Label:
+                id: username_label
+                size_hint_y: None
+                text: "Username" if (root.ids.username.focus == True) or (root.ids.username.text) else ""
+                font_size: "20sp"
+                text_size: self.size
+                halign: 'left'
+                valign: 'middle'
+            TextInput:
+                id: username
+                hint_text: "Enter your user name"
+                hint_text_color: [0, 0, 0, 0] if self.focus == True else [0, 0, 0, 1]
+                multiline: False
+                font_size: "20sp"
+                size_hint_y: None
+                height: 125
+            RelativeLayout:
+                Button:
+                    text: "Back"
+                    on_press: root.go_back()
+                    size_hint: 0.3, 0.5
+                    pos_hint : {'center_x': 0.25, 'center_y': 0.6}
+                    font_size: "20sp"
+                Button:
+                    text: "Submit"
+                    on_press: root.send_details(root.ids.mail.text, root.ids.username.text)
+                    size_hint: 0.3, 0.5
+                    pos_hint : {'center_x': 0.7, 'center_y': 0.6}
+                    font_size: "20sp"
+            Label:
+                id: comment
+                text: ""
+                font_size: "20sp"
+
+
+<LogInScreenSuccess>:
+    GridLayout:
+        cols: 1
+        GridLayout:
+            cols: 4
+            row_default_height: 150
+            row_force_default: True
+            Label:
+                id: score
+                text: "Score : 0"
+            Button:
+                id: start_game
+                text: "Start Game"
+                on_press: root.start_stop()
+            Label:
+                id: click_num
+                text: "Click Number : -"
+            Button:
+                text: "Log Out"
+                on_press: root.go_to_login()
+        StackLayout:
+            Button:
+                id: button_0
+                text: "" if root.ids.start_game.text == "Start Game" else ""
+                size_hint: [.2, .2]
+                on_press: root.result(root.ids.click_num.text, root.ids.button_0.text)
+            Button:
+                id: button_1
+                text: "" if root.ids.start_game.text == "Start Game" else ""
+                size_hint: [.2, .2]
+                on_press: root.result(root.ids.click_num.text, root.ids.button_1.text)
+            Button:
+                id: button_2
+                text: "" if root.ids.start_game.text == "Start Game" else ""
+                size_hint: [.2, .2]
+                on_press: root.result(root.ids.click_num.text, root.ids.button_2.text)
+            Button:
+                id: button_3
+                text: "" if root.ids.start_game.text == "Start Game" else ""
+                size_hint: [.2, .2]
+                on_press: root.result(root.ids.click_num.text, root.ids.button_3.text)
+            Button:
+                id: button_4
+                text: "" if root.ids.start_game.text == "Start Game" else ""
+                size_hint: [.2, .2]
+                on_press: root.result(root.ids.click_num.text, root.ids.button_4.text)
+            Button:
+                id: button_5
+                text: "" if root.ids.start_game.text == "Start Game" else ""
+                size_hint: [.2, .2]
+                on_press: root.result(root.ids.click_num.text, root.ids.button_5.text)
+            Button:
+                id: button_6
+                text: "" if root.ids.start_game.text == "Start Game" else ""
+                size_hint: [.2, .2]
+                on_press: root.result(root.ids.click_num.text, root.ids.button_6.text)
+            Button:
+                id: button_7
+                text: "" if root.ids.start_game.text == "Start Game" else ""
+                size_hint: [.2, .2]
+                on_press: root.result(root.ids.click_num.text, root.ids.button_7.text)
+            Button:
+                id: button_8
+                text: "" if root.ids.start_game.text == "Start Game" else ""
+                size_hint: [.2, .2]
+                on_press: root.result(root.ids.click_num.text, root.ids.button_8.text)
+            Button:
+                id: button_9
+                text: "" if root.ids.start_game.text == "Start Game" else ""
+                size_hint: [.2, .2]
+                on_press: root.result(root.ids.click_num.text, root.ids.button_9.text)
+            Button:
+                id: button_10
+                text: "" if root.ids.start_game.text == "Start Game" else ""
+                size_hint: [.2, .2]
+                on_press: root.result(root.ids.click_num.text, root.ids.button_10.text)
+            Button:
+                id: button_11
+                text: "" if root.ids.start_game.text == "Start Game" else ""
+                size_hint: [.2, .2]
+                on_press: root.result(root.ids.click_num.text, root.ids.button_11.text)
+            Button:
+                id: button_12
+                text: "" if root.ids.start_game.text == "Start Game" else ""
+                size_hint: [.2, .2]
+                on_press: root.result(root.ids.click_num.text, root.ids.button_12.text)
+            Button:
+                id: button_13
+                text: "" if root.ids.start_game.text == "Start Game" else ""
+                size_hint: [.2, .2]
+                on_press: root.result(root.ids.click_num.text, root.ids.button_13.text)
+            Button:
+                id: button_14
+                text: "" if root.ids.start_game.text == "Start Game" else ""
+                size_hint: [.2, .2]
+                on_press: root.result(root.ids.click_num.text, root.ids.button_14.text)
+
+
+
+<RootWidget>:
+    LogInScreen:
+        name: "Log_in_screen"
+    SignUpScreen:
+        name: "sign_up_screen"
+    SignUpScreenSuccess:
+        name: "sign_up_screen_success"
+    ForgotPasswordScreen:
+        name: "forgot_password_screen"
+    LogInScreenSuccess:
+        name: "Login_screen_success"
